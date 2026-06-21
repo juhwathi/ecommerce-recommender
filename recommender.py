@@ -14,11 +14,13 @@ user_item_matrix = ratings.pivot(
     index="userId",
     columns="movieId",
     values="rating"
-)
+).fillna(0)
 
+item_similarity = cosine_similarity(
+    user_item_matrix.T
+)
 print("\nUser-Item Matrix shape:")
 print(user_item_matrix.shape)
-
 
 print("\n🔥 Top Movies:")
 print(get_top_movies(10))
